@@ -8,12 +8,14 @@ Bounty Prompt Extension
 [![GitHub forks](https://img.shields.io/github/forks/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/network)
 [![GitHub stars](https://img.shields.io/github/stars/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/stargazers)
 
+----------------------
 **Bounty Prompt** is a Open Source Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
-## Install and Usage 
-1. Install the extension (Requirement use Burp Suite early adopter compatible with Burp AI)
+## Installation and Usage Resume
+----------------------
+1. Install the extension (Requirement: use **Burp Suite Pro Early Adopter** compatible with Burp AI)
 2. Specify the `prompts` directory in the `Config` tab
 3. Enable `Use AI` in the extension:
 
@@ -24,6 +26,7 @@ Bounty Prompt Extension
 ![BountyPrompt2](/images/BountyPrompt2.png)
 
 ## Features
+----------------------
 
 - **AI-Driven Prompt Generation:** Harness the power of AI to generate customized security testing prompts tailored to your web application assessments.
 - **Advanced HTTP Tag Support:** Automatically insert specific HTTP data into your prompts using predefined tags such as `[HTTP_Requests]`, `[HTTP_Requests_Headers]`, `[HTTP_Requests_Parameters]`, `[HTTP_Request_Body]`, `[HTTP_Responses]`, `[HTTP_Response_Headers]`, `[HTTP_Response_Body]`, `[HTTP_Status_Code]`, and `[HTTP_Cookies]`.
@@ -35,28 +38,8 @@ Bounty Prompt Extension
 
 For more information, please visit our website: [https://bountysecurity.ai](https://bountysecurity.ai)
 
-Table of Contents
------------------
 
-*   [1\. Open Burp Suite](#open-burp-suite)
-*   [2\. Load the Extension](#load-extension)
-*   [3\. Launch the Extension](#launch-extension)
-*   [4\. Configuration](#configuration)
-*   [5\. AI Prompts](#ai-prompts)
-*   [6\. Supported HTTP Tags](#supported-http-tags)
-*   [7\. Usage](#usage)
-*   [8\. Installation and Execution Example](#installation-and-execution)
-*   [9\. Example Prompts](#example-prompts)
-*   [10\. Contributing](#contributing)
-*   [11\. License](#license)
-*   [12\. Contact](#contact)
-
-1\. Open Burp Suite
--------------------
-
-Start Burp Suite Community or Professional Edition **Early Adopter compatible with Burp AI**.
-
-2\. Load the Extension
+## Load the Extension
 ----------------------
 
 1.  Navigate to **Extender > Extensions**.
@@ -65,13 +48,7 @@ Start Burp Suite Community or Professional Edition **Early Adopter compatible wi
 4.  Click **Select file...** and choose the compiled JAR file from the repository (or the directory containing your compiled classes).
 5.  Click **Next** and wait for the extension to load. You should see the extension named **Bounty Prompt Extension** in the list.
 
-3\. Launch the Extension
-------------------------
-
-1.  Once loaded, a new tab (e.g., **Bounty Prompt**) will appear in Burp Suite.
-2.  The extension’s output tab will display welcome messages.
-
-4\. Configuration
+## Configuration
 -----------------
 
 The extension allows you to configure AI prompts. Each prompt consists of the following fields:
@@ -84,12 +61,12 @@ The extension allows you to configure AI prompts. Each prompt consists of the fo
 *   **System Prompt:** Instructions for the AI to define its role (e.g., "You are a web security expert specialized in SQL injection analysis...").
 *   **User Prompt:** The question or task for the AI. This field may include special tags (see Supported HTTP Tags).
 
-5\. AI Prompts
+## AI Prompts
 --------------
 
 Configure your prompts in the extension UI. For issue-related prompts, set the Output Type to _Issue_ and select the desired Severity and Confidence levels. For prompts that display output, set the Output Type to _Prompt Output_.
 
-6\. Supported HTTP Tags
+## Supported HTTP Tags
 -----------------------
 
 You can include the following tags in the User Prompt to automatically insert specific HTTP properties into your prompt:
@@ -104,7 +81,7 @@ You can include the following tags in the User Prompt to automatically insert sp
 *   **\[HTTP\_Status\_Code\]:** Includes the HTTP response status code (e.g., 200, 404).
 *   **\[HTTP\_Cookies\]:** Includes cookies extracted from the HTTP request or response.
 
-7\. Usage
+## Usage
 ---------
 
 1.  **Configure Prompts:** In the extension UI, add or edit prompts with the required fields.
@@ -117,32 +94,7 @@ You can include the following tags in the User Prompt to automatically insert sp
     *   For _Prompt Output_ type, review the AI responses in the extension’s output area.
     *   For _Issue_ type, review the created issues in the Burp Suite Issues tab.
 
-8\. Installation and Execution Example
---------------------------------------
-
-### Compile the Extension
-
-If using Maven, run:
-
-    mvn clean package
-
-This will generate a JAR file in the `target/` directory.
-
-### Load the Extension in Burp Suite
-
-1.  Open Burp Suite.
-2.  Go to **Extender > Extensions**.
-3.  Click **Add**.
-4.  Choose **Java** as the extension type.
-5.  Select the built JAR file.
-6.  Click **Next** and wait until the extension loads.
-
-### Launch the Extension
-
-1.  Once loaded, a new tab (e.g., **Bounty Prompt**) will appear.
-2.  The extension’s output tab will display welcome messages.
-
-9\. Example Prompts
+## Example Prompts
 -------------------
 
 Below are some sample prompts you can use or modify:
@@ -227,23 +179,23 @@ Below are some sample prompts you can use or modify:
 *   **Malicious Input Reflection Analysis (Detailed):** Detect if any user-supplied input is being reflected in HTTP responses without proper sanitization.
 *   **Information Disclosure in Headers (Detailed):** Identify any HTTP response headers that reveal sensitive information such as server versions, internal IPs, or configuration details.
 
-10\. Images
+## Images
 
 ![BountyPrompt3](/images/BountyPrompt3.png)
 ![BountyPrompt4](/images/BountyPrompt4.png)
 
 
-11\. Contributing
+## Contributing
 -----------------
 
 Contributions are welcome! Please fork the repository, submit pull requests, or open issues if you have suggestions, find bugs, or want to improve the extension. Ensure that your contributions follow the existing code style and include appropriate tests and documentation.
 
-12\. License
+## License
 ------------
 
 This project is licensed under the MIT License.
 
-12\. Contact
+## Contact
 ------------
 
 For questions or support, please contact: [hello@bountysecurity.ai](mailto:hello@bountysecurity.ai)
