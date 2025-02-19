@@ -10,6 +10,13 @@ Bounty Prompt Extension
 
 **Bounty Prompt Extension** is a Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
 
+![BountyPrompt1](/images/BountyPrompt1.png)
+![BountyPrompt2](/images/BountyPrompt2.png)
+![BountyPrompt3](/images/BountyPrompt3.png)
+![BountyPrompt4](/images/BountyPrompt4.png)
+![BountyPrompt5](/images/BountyPrompt5.png)
+
+
 ## Features
 
 - **AI-Driven Prompt Generation:** Harness the power of AI to generate customized security testing prompts tailored to your web application assessments.
