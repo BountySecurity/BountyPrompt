@@ -33,7 +33,7 @@ Table of Contents
 *   [4\. Configuration](#configuration)
 *   [5\. AI Prompts](#ai-prompts)
 *   [6\. Supported HTTP Tags](#supported-http-tags)
-*   [7\. Usage](#usage)
+*   [7. Usage](#usage)
 *   [8\. Installation and Execution Example](#installation-and-execution)
 *   [9\. Example Prompts](#example-prompts)
 *   [10\. Contributing](#contributing)
