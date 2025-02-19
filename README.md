@@ -33,7 +33,7 @@ Table of Contents
 *   [4\. Configuration](#configuration)
 *   [5\. AI Prompts](#ai-prompts)
 *   [6\. Supported HTTP Tags](#supported-http-tags)
-*   [7. Usage](#usage)
+*   [7\. Usage](#usage)
 *   [8\. Installation and Execution Example](#installation-and-execution)
 *   [9\. Example Prompts](#example-prompts)
 *   [10\. Contributing](#contributing)
@@ -93,7 +93,7 @@ You can include the following tags in the User Prompt to automatically insert sp
 *   **\[HTTP\_Status\_Code\]:** Includes the HTTP response status code (e.g., 200, 404).
 *   **\[HTTP\_Cookies\]:** Includes cookies extracted from the HTTP request or response.
 
-7. Usage
+7\. Usage
 ---------
 
 1.  **Configure Prompts:** In the extension UI, add or edit prompts with the required fields.
