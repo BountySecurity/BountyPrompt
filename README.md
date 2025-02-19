@@ -9,7 +9,7 @@ Bounty Prompt Extension
 [![GitHub stars](https://img.shields.io/github/stars/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/stargazers)
 
 ----------------------
-**Bounty Prompt** is a Open Source Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
+**Bounty Prompt** is a Open Source **Burp Suite** extension developed by **Bounty Security** that leverages advanced AI technology integrated via **Burp AI**. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
