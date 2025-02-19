@@ -43,7 +43,7 @@ Table of Contents
 1\. Open Burp Suite
 -------------------
 
-Start Burp Suite Community or Professional Edition Early Adopter compatible with Burp AI.
+Start Burp Suite Community or Professional Edition **Early Adopter compatible with Burp AI**.
 
 2\. Load the Extension
 ----------------------
