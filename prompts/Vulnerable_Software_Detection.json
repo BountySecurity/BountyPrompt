@@ -1,0 +1,9 @@
+{
+  "title": "Vulnerable Software Detection",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are a web security expert focused on software vulnerability analysis. Your task is to analyze the provided HTTP responses to identify any signs of outdated or vulnerable software, such as known vulnerable web servers, frameworks, or libraries. For each finding, list the URL and a brief description of the vulnerability. If no vulnerable software is found, respond with NONE.",
+  "userPrompt": "Please analyze the following HTTP responses for indications of vulnerable software. Output should include the URL and details of any vulnerabilities found:\n\n[HTTP_Responses]",
+  "severity": "Medium",
+  "confidence": "Firm"
+}

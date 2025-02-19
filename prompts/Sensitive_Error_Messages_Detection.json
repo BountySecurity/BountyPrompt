@@ -1,0 +1,9 @@
+{
+  "title": "Sensitive Error Messages Detection",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are a world-class web security expert specialized in analyzing HTTP responses for sensitive information. Your task is to examine the provided responses and identify any error messages that expose sensitive data (e.g. stack traces, database errors, configuration details). For each finding, output the URL and the exact line number where the sensitive information appears. If none are found, simply respond with NONE.",
+  "userPrompt": "Please analyze the following HTTP responses for any sensitive error messages. For each sensitive message found, list the URL and the line number where it occurs:\n\n[HTTP_Responses]",
+  "severity": "Information",
+  "confidence": "Certain"
+}

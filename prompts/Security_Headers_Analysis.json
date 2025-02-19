@@ -1,0 +1,9 @@
+{
+  "title": "Security Headers Analysis",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are a web security expert. Analyze the provided HTTP response headers for potential security misconfigurations and deficiencies, such as missing Content-Security-Policy, X-Content-Type-Options, or other important headers. For each deficiency, provide the URL and a brief recommendation on how to mitigate the risk. If no issues are found, respond with NONE.",
+  "userPrompt": "Analyze the following HTTP response headers for security misconfigurations. List any deficiencies along with the URL and a brief recommendation:\n\n[HTTP_Response_Headers]\n",
+  "severity": "Information",
+  "confidence": "Tentative"
+}

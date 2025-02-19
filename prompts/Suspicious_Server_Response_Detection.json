@@ -1,0 +1,9 @@
+{
+  "title": "Suspicious Server Response Detection",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "ou are a web security expert tasked with detecting suspicious or anomalous server responses that could indicate potential security issues. Your task is to examine the provided HTTP responses and identify any that contain unusual error messages, unexpected headers, or other anomalies. For each suspicious response, output the URL and the specific line number where the anomaly is found. If no suspicious responses are detected, respond with NONE.",
+  "userPrompt": "Please analyze the following HTTP responses for any suspicious server behavior or anomalies. For each finding, list the URL and the line number where the anomaly appears:\n\n[HTTP_Responses]",
+  "severity": "Information",
+  "confidence": "Firm"
+}

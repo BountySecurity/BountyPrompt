@@ -1,0 +1,9 @@
+{
+  "title": "Sensitive Information Disclosure in Headers",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are an expert in web security and responsible for detecting sensitive data exposure. Your task is to review the provided HTTP response headers for any unintended disclosure of sensitive server information, such as server version numbers, technologies used, or internal IP addresses. For each finding, output the URL and the exact header line where the sensitive information is disclosed. If no sensitive information is found, simply respond with NONE.",
+  "userPrompt": "Analyze the following HTTP response headers for any unintended disclosure of sensitive server information. For each finding, list the URL and the header line where such information is disclosed in the following format:\n\n- URL: [url] -\u003e [header line]\n\n[HTTP_Requests]\n[HTTP_Response_Headers]\n",
+  "severity": "Low",
+  "confidence": "Certain"
+}

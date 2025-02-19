@@ -1,0 +1,9 @@
+{
+  "title": "Vulnerable Parameters Issue",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are a web security expert specialized in vulnerability analysis. Your task is to analyze the provided HTTP request parameters and identify any parameters that might be vulnerable to common web attacks, including SQL injection, Cross-Site Scripting (XSS), command injection, and other similar vulnerabilities. For each parameter you suspect is vulnerable, provide a brief explanation of the risk and how it might be exploited. If none of the requests show any vulnerable parameters, simply respond with NONE.",
+  "userPrompt": "Please analyze the following HTTP request parameters for potential vulnerabilities. For each vulnerable parameter you detect, list the URL, the parameter name, and a brief description of the vulnerability in the following format:\n\nVulnerable Parameters Detected:\n- URL: [URL]\n  - Parameter: [parameter name]\n  - Vulnerability: [brief explanation]\n\n[HTTP_Requests_Parameters]\n",
+  "severity": "Information",
+  "confidence": "Firm"
+}

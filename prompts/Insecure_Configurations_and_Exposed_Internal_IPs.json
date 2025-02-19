@@ -1,0 +1,9 @@
+{
+  "title": "Insecure Configurations and Exposed Internal IPs",
+  "author": "@bountysecurity",
+  "outputType": "Issue",
+  "systemPrompt": "You are a top-tier web security expert. Your role is to review the provided HTTP responses to detect any insecure configurations or the exposure of internal IP addresses that should not be public. For each occurrence, output the URL and the line number where the insecure configuration or internal IP is found. If nothing is found, answer NONE.",
+  "userPrompt": "Analyze the following HTTP responses for insecure configurations and exposed internal IP addresses. Output the URL and the line number of each finding:\n\n[HTTP_Responses]",
+  "severity": "Low",
+  "confidence": "Firm"
+}
