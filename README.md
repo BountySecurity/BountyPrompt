@@ -11,11 +11,17 @@ Bounty Prompt Extension
 **Bounty Prompt Extension** is a Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
-![BountyPrompt2](/images/BountyPrompt2.png)
-![BountyPrompt3](/images/BountyPrompt3.png)
-![BountyPrompt4](/images/BountyPrompt4.png)
+
+## Install and Usage 
+1. Install the extension
+2. Specify the `prompts` directory in the `Config` tab
+3. Enable `Use AI` in the extension:
+
 ![BountyPrompt5](/images/BountyPrompt5.png)
 
+5. Use the extension with the default prompts or your own.
+   
+![BountyPrompt2](/images/BountyPrompt2.png)
 
 ## Features
 
@@ -28,8 +34,6 @@ Bounty Prompt Extension
 - **Powered by Burp AI:** Utilizes the latest Burp AI technology to deliver accurate and effective security analysis.
 
 For more information, please visit our website: [https://bountysecurity.ai](https://bountysecurity.ai)
-
-IMAGE
 
 Table of Contents
 -----------------
@@ -223,12 +227,18 @@ Below are some sample prompts you can use or modify:
 *   **Malicious Input Reflection Analysis (Detailed):** Detect if any user-supplied input is being reflected in HTTP responses without proper sanitization.
 *   **Information Disclosure in Headers (Detailed):** Identify any HTTP response headers that reveal sensitive information such as server versions, internal IPs, or configuration details.
 
-10\. Contributing
+10\. Images
+
+![BountyPrompt3](/images/BountyPrompt3.png)
+![BountyPrompt4](/images/BountyPrompt4.png)
+
+
+11\. Contributing
 -----------------
 
 Contributions are welcome! Please fork the repository, submit pull requests, or open issues if you have suggestions, find bugs, or want to improve the extension. Ensure that your contributions follow the existing code style and include appropriate tests and documentation.
 
-11\. License
+12\. License
 ------------
 
 This project is licensed under the MIT License.
