@@ -93,7 +93,7 @@ You can include the following tags in the User Prompt to automatically insert sp
 *   **\[HTTP\_Status\_Code\]:** Includes the HTTP response status code (e.g., 200, 404).
 *   **\[HTTP\_Cookies\]:** Includes cookies extracted from the HTTP request or response.
 
-7\. Usage
+7. Usage
 ---------
 
 1.  **Configure Prompts:** In the extension UI, add or edit prompts with the required fields.
