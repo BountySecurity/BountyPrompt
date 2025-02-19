@@ -101,7 +101,7 @@ You can include the following tags in the User Prompt to automatically insert sp
 3.  **Trigger a Prompt:**
     *   Right-click to open the context menu and choose the **Prompts** menu.
     *   Select a prompt to send the selected HTTP data to the AI.
-4.  **Issue Creation:** If the prompt’s Output Type is set to _Issue_, an issue will be created in Burp Suite against the static host [http://bountyprompt\_extension.com/](http://bountyprompt_extension.com/). For a single request, the issue will include the full endpoint; for multiple requests, only the domain (host) is used.
+4.  **Issue Creation:** If the prompt’s Output Type is set to _Issue_, an issue will be created in Burp Suite against the static host `http://bountyprompt_extension.com`. For a single request, the issue will include the full endpoint; for multiple requests, only the domain (host) is used.
 5.  **Review Results:**
     *   For _Prompt Output_ type, review the AI responses in the extension’s output area.
     *   For _Issue_ type, review the created issues in the Burp Suite Issues tab.
@@ -128,7 +128,7 @@ This will generate a JAR file in the `target/` directory.
 
 ### Launch the Extension
 
-1.  Once loaded, a new tab (e.g., **BountyPrompt**) will appear.
+1.  Once loaded, a new tab (e.g., **Bounty Prompt**) will appear.
 2.  The extension’s output tab will display welcome messages.
 
 9\. Example Prompts
