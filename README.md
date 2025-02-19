@@ -13,7 +13,7 @@ Bounty Prompt Extension
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
 ## Install and Usage 
-1. Install the extension
+1. Install the extension (Requirement use Burp Suite early adopter compatible with Burp AI)
 2. Specify the `prompts` directory in the `Config` tab
 3. Enable `Use AI` in the extension:
 
