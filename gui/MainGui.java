@@ -100,9 +100,10 @@ public class MainGui extends javax.swing.JPanel {
         promptsDirectory = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jtabpane1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
@@ -239,7 +240,7 @@ public class MainGui extends javax.swing.JPanel {
         jLabel33.setEnabled(false);
 
         jLabel51.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(229, 92, 58));
+        jLabel51.setForeground(new java.awt.Color(0, 117, 169));
         jLabel51.setText("Bounty Prompts Directory");
 
         jLabel500.setText("In this section specify the base prompts directory. ");
@@ -259,6 +260,9 @@ public class MainGui extends javax.swing.JPanel {
                 reloadPromptsDirectory(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel1.setText("Coming soon...");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -300,7 +304,10 @@ public class MainGui extends javax.swing.JPanel {
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(promptsDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(533, Short.MAX_VALUE))))
+                        .addContainerGap(533, Short.MAX_VALUE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,6 +324,8 @@ public class MainGui extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -335,14 +344,10 @@ public class MainGui extends javax.swing.JPanel {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
-                .addContainerGap(612, Short.MAX_VALUE))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
 
         jtabpane1.addTab("   Config   ", jPanel22);
-
-        titleLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(229, 92, 58));
-        titleLabel.setText("About");
 
         descriptionLabel.putClientProperty("html.disable", null);
         descriptionLabel.setText("<html> <p style=\"text-align: justify;\"> Bounty Prompt Extension is a Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows. </p><br/>For more details and to explore our solutions, please visit: <ul><li><a href=\\\\\\\"\\\\\\\">https://bountysecurity.ai</a></li></ul></p></html>");
@@ -353,6 +358,8 @@ public class MainGui extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BountySecurity_Logo.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -360,18 +367,18 @@ public class MainGui extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel)
-                    .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(576, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(708, Short.MAX_VALUE))
+                .addContainerGap(554, Short.MAX_VALUE))
         );
 
         jtabpane1.addTab("   About   ", jPanel1);
@@ -440,7 +447,7 @@ public class MainGui extends javax.swing.JPanel {
 
     private void goWeb(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goWeb
         try {
-            Desktop.getDesktop().browse(new URI("https://bountysecurity.ai"));
+            Desktop.getDesktop().browse(new URI("https://bountysecurity.ai/?utm_source=bountyprompt"));
         } catch (URISyntaxException | IOException e) {
             
         }
@@ -471,7 +478,9 @@ public class MainGui extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -494,6 +503,5 @@ public class MainGui extends javax.swing.JPanel {
     public javax.swing.JTextField promptsDirectory;
     private javax.swing.JTextArea promptsOutput;
     private javax.swing.JTable prompts_table;
-    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
