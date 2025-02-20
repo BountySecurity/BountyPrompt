@@ -15,7 +15,8 @@ Bounty Prompt Extension
 
 ## Installation and Usage Resume
 ----------------------
-1. Install the extension (Requirement: use **Burp Suite Pro Early Adopter** compatible with Burp AI)
+<span style="color:red;">WARNING!: You need **Burp Suite Pro Early Adopter** compatible with Burp AI</span><br/>
+1. Install the extension
 2. Specify the `prompts` directory in the `Config` tab
 3. Enable `Use AI` in the extension:
 
