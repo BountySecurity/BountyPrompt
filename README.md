@@ -22,7 +22,7 @@ Bounty Prompt Extension
 
 ![BountyPrompt5](/images/BountyPrompt5.png)
 
-5. Use the extension with the default prompts or your own.
+4. Use the extension with the default prompts or your own.
    
 ![BountyPrompt2](/images/BountyPrompt2.png)
 
