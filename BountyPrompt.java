@@ -76,7 +76,7 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
 
         if (filename == null) {
             // Get the current working directory of the extension
-            String workingDir = System.getProperty("user.dir");
+            String workingDir = System.getProperty("user.home");
             // Build the prompts directory path
             filename = workingDir + File.separator + "prompts";
             // Create the directory if it doesn't exist
