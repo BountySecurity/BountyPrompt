@@ -3,17 +3,24 @@ package bountyprompt.gui;
 import burp.api.montoya.persistence.PersistedObject;
 import bountyprompt.BountyPrompt;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import java.io.*;
+import java.util.zip.*;
 
 /**
  *
@@ -45,7 +52,6 @@ public class MainGui extends javax.swing.JPanel {
         return promptsList;
     }
 
-
     public void appendResponse(String promptTitle, String aiResponse) {
         String formattedResponse = "Prompt Title: " + promptTitle + "\n\n"
                 + "AI Response: \n\n" + aiResponse + "\n"
@@ -62,6 +68,90 @@ public class MainGui extends javax.swing.JPanel {
                 + "------------------------------------------------------------------------"
                 + "------------------------------------------------------------------------\n";
         promptsOutput.append(formattedResponse);
+    }
+
+    public void selectExtensionTab() {
+        Component current = this;
+        do {
+            current = current.getParent();
+        } while (!(current instanceof JTabbedPane));
+
+        JTabbedPane tabPane = (JTabbedPane) current;
+        for (int i = 0; i < tabPane.getTabCount(); i++) {
+            if (tabPane.getTitleAt(i).equals(BountyPrompt.EXTENSION_NAME)) {
+                tabPane.setSelectedIndex(i);
+            }
+        }
+    }
+
+    public void selectConfigTab() {
+        jtabpane1.setSelectedIndex(2);
+    }
+
+    public void unzip(String zipFilePath, String destDir) throws IOException {
+        File dir = new File(destDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFilePath))) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
+                String filePath = destDir + File.separator + entry.getName();
+                if (!entry.isDirectory()) {
+                    // Ensure that the parent directory exists
+                    File parent = new File(filePath).getParentFile();
+                    if (!parent.exists()) {
+                        parent.mkdirs();
+                    }
+                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath))) {
+                        byte[] buffer = new byte[4096];
+                        int len;
+                        while ((len = zis.read(buffer)) != -1) {
+                            bos.write(buffer, 0, len);
+                        }
+                    }
+                } else {
+                    // If the entry is a directory, create it
+                    new File(filePath).mkdirs();
+                }
+                zis.closeEntry();
+            }
+        }
+    }
+
+    public void copyDirectory(File sourceDir, File destDir) throws IOException {
+        if (sourceDir.isDirectory()) {
+            if (!destDir.exists()) {
+                destDir.mkdirs();
+            }
+            String[] children = sourceDir.list();
+            if (children != null) {
+                for (String child : children) {
+                    copyDirectory(new File(sourceDir, child), new File(destDir, child));
+                }
+            }
+        } else {
+            // Copy file content
+            try (InputStream in = new FileInputStream(sourceDir); OutputStream out = new FileOutputStream(destDir)) {
+                byte[] buffer = new byte[4096];
+                int length;
+                while ((length = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, length);
+                }
+            }
+        }
+    }
+
+    public void deleteDirectory(File directory) {
+        if (directory.isDirectory()) {
+            File[] children = directory.listFiles();
+            if (children != null) {
+                for (File child : children) {
+                    deleteDirectory(child);
+                }
+            }
+        }
+        directory.delete();
     }
 
     /**
@@ -101,6 +191,8 @@ public class MainGui extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        downloadPrompts = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         descriptionLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -264,6 +356,15 @@ public class MainGui extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Coming soon...");
 
+        downloadPrompts.setText("Download");
+        downloadPrompts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadPrompts(evt);
+            }
+        });
+
+        jLabel3.setText("* Download prompts from GitHub");
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
@@ -306,9 +407,17 @@ public class MainGui extends javax.swing.JPanel {
                                 .addComponent(promptsDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(533, Short.MAX_VALUE))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(downloadPrompts)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        jPanel22Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {downloadPrompts, jButton1, jButton5});
+
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
@@ -322,6 +431,10 @@ public class MainGui extends javax.swing.JPanel {
                     .addComponent(promptsDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(downloadPrompts, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -344,8 +457,10 @@ public class MainGui extends javax.swing.JPanel {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(542, Short.MAX_VALUE))
         );
+
+        jPanel22Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {downloadPrompts, jButton1, jButton5});
 
         jtabpane1.addTab("   Config   ", jPanel22);
 
@@ -449,9 +564,74 @@ public class MainGui extends javax.swing.JPanel {
         try {
             Desktop.getDesktop().browse(new URI("https://bountysecurity.ai/?utm_source=bountyprompt"));
         } catch (URISyntaxException | IOException e) {
-            
+
         }
     }//GEN-LAST:event_goWeb
+
+    private void downloadPrompts(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadPrompts
+        // URL of the GitHub project zip (downloading the main branch in this example)
+        String zipUrl = "https://github.com/BountySecurity/BountyPrompt/archive/refs/heads/main.zip";
+        // Get the user's home directory
+        String userHome = System.getProperty("user.home");
+        // Temporary file path for the downloaded zip file
+        String zipFilePath = userHome + File.separator + "BountyPrompt.zip";
+        // Destination directory for the prompts (home/prompts)
+        String destPromptsDirPath = userHome + File.separator + "prompts";
+        File destPromptsDirFolder = new File(destPromptsDirPath);
+
+        // If the prompts directory exists, warn the user that it will be overwritten.
+        if (destPromptsDirFolder.exists()) {
+            int response = JOptionPane.showConfirmDialog(null,
+                    "The prompts directory already exists and will be overwritten. Do you want to continue?",
+                    "Confirm Overwrite",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (response != JOptionPane.YES_OPTION) {
+                return; // Cancel the download if the user does not agree.
+            }
+        }
+
+        try {
+            // Download the zip file
+            URL url = new URL(zipUrl);
+            try (InputStream in = url.openStream(); FileOutputStream fos = new FileOutputStream(zipFilePath)) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    fos.write(buffer, 0, bytesRead);
+                }
+            }
+
+            // Unzip the downloaded file into the user's home directory
+            // This will create a folder named "BountyPrompt-main" in the user's home directory.
+            unzip(zipFilePath, userHome);
+
+            // Define the extracted folder and the source prompts directory
+            File extractedFolder = new File(userHome, "BountyPrompt-main");
+            File sourcePromptsDir = new File(extractedFolder, "prompts");
+            File destPromptsDir = new File(destPromptsDirPath);
+
+            // Copy the prompts directory from the extracted folder to the destination
+            copyDirectory(sourcePromptsDir, destPromptsDir);
+
+            // Delete the downloaded zip file
+            new File(zipFilePath).delete();
+
+            // Delete the extracted "BountyPrompt-main" directory
+            deleteDirectory(extractedFolder);
+
+            // Update the text field promptsDirectory with the destination directory path
+            promptsDirectory.setText(destPromptsDirPath);
+            promptPanel.reloadPromptsFromDirectory(promptsDirectory.getText());
+
+            // Show a popup message indicating that the process has completed successfully
+            JOptionPane.showMessageDialog(null, "Download and extraction process completed successfully!");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error downloading or processing the project: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_downloadPrompts
 
     /**
      * Exports the content of promptsOutput to a file selected by the user.
@@ -474,6 +654,7 @@ public class MainGui extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clear;
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JButton downloadPrompts;
     private javax.swing.JButton exportTo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
@@ -482,6 +663,7 @@ public class MainGui extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -497,7 +679,7 @@ public class MainGui extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTabbedPane jtabpane1;
+    public javax.swing.JTabbedPane jtabpane1;
     private javax.swing.JTextField openai_key;
     private javax.swing.JComboBox<String> openai_model;
     public javax.swing.JTextField promptsDirectory;

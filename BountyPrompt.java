@@ -119,21 +119,31 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
         JMenu promptsMenu = new JMenu("Prompts");
         if (gui != null) {
             List<PromptPanel.Prompt> prompts = gui.getPrompts();
-            for (PromptPanel.Prompt prompt : prompts) {
-                JMenuItem item = new JMenuItem(prompt.title);
-                item.addActionListener(e -> {
-                    // Obtiene los HttpRequestResponse seleccionados en el evento
-                    HttpRequestResponse[] messages = getSelectedMessages(event);
-                    List<HttpRequestResponse> requestResponses = Arrays.asList(messages);
-                    // Muestra el popup de filtrado (usando el panel FilterURLs) y obtiene la lista filtrada
-                    List<HttpRequestResponse> remaining = FilterURLs.showURLFilterPopup(gui, requestResponses);
-                    // Si el usuario pulsó OK y quedan objetos filtrados, se procede a generar el contenido extra
-                    if (remaining != null && !remaining.isEmpty()) {
-                        String extraContent = getFilteredContentFromList(remaining, prompt.userPrompt);
-                        aiExecutor.executePromptAsync(remaining, prompt, extraContent);
-                    }
+            if (prompts.isEmpty()) {
+                // If there are no prompts, display the "Configure prompts directory" option
+                JMenuItem configureItem = new JMenuItem("Configure prompts directory");
+                configureItem.addActionListener(e -> {
+                    gui.selectExtensionTab();
+                    gui.selectConfigTab();
                 });
-                promptsMenu.add(item);
+                promptsMenu.add(configureItem);
+            } else {
+                for (PromptPanel.Prompt prompt : prompts) {
+                    JMenuItem item = new JMenuItem(prompt.title);
+                    item.addActionListener(e -> {
+                        // Retrieve the selected HttpRequestResponse objects from the event.
+                        HttpRequestResponse[] messages = getSelectedMessages(event);
+                        List<HttpRequestResponse> requestResponses = Arrays.asList(messages);
+                        // Display the URL filter popup (using the FilterURLs panel) and get the filtered list.
+                        List<HttpRequestResponse> remaining = FilterURLs.showURLFilterPopup(gui, requestResponses);
+                        // If the user pressed OK and there are filtered objects, proceed to generate the extra content.
+                        if (remaining != null && !remaining.isEmpty()) {
+                            String extraContent = getFilteredContentFromList(remaining, prompt.userPrompt);
+                            aiExecutor.executePromptAsync(remaining, prompt, extraContent);
+                        }
+                    });
+                    promptsMenu.add(item);
+                }
             }
         }
         return new ArrayList<>(Arrays.asList(promptsMenu));
