@@ -19,6 +19,8 @@ Bounty Prompt
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
+![Execute](/images/Execute.png)
+
 ## Usage with Burp AI
 ----------------------
 **WARNING!** You need a **Burp Suite Pro Early Adopter 2025.2 version** or newer compatible with Burp AI:<br/>
@@ -43,6 +45,8 @@ To use Groq Cloud:
 4. Right-click and choose the **Groq Cloud** menu option.
 5. If the Groq API key is not configured or is empty, a popup will prompt you to configure it in the Config tab.
 6. The prompt will be sent to Groq Cloud using the specified API key and model. The output or created issue will then be displayed within Burp Suite.
+
+![Groq_key](/images/Groq_key.png)
 
 For more details on Groq Cloud, visit: [Groq Cloud](https://www.groq.com)
 
