@@ -19,7 +19,11 @@ Bounty Prompt
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
+![BountyPrompt4](/images/BountyPrompt4.png)
+
 ![Execute](/images/Execute.png)
+
+
 
 ## Usage with Burp AI
 ----------------------
@@ -150,12 +154,6 @@ Below are some sample prompts you can use or modify:
         [HTTP_Responses]
 
 *(Additional prompt examples at the prompts directory)*
-
-## Images
-----------------------
-
-![BountyPrompt3](/images/BountyPrompt3.png)  
-![BountyPrompt4](/images/BountyPrompt4.png)
 
 ## Contributing
 -----------------
