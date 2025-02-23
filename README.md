@@ -38,13 +38,11 @@ Bounty Prompt
 To use Groq Cloud:
 
 1. Ensure you have a valid Groq Cloud API key and select the desired AI model from the configuration.
-2. Configure your prompts in the extension UI.
+2. Specify the `prompts` directory in the **Config** tab..
 3. Select the desired HTTP requests/responses in Burp Suite.
 4. Right-click and choose the **Groq Cloud** menu option.
 5. If the Groq API key is not configured or is empty, a popup will prompt you to configure it in the Config tab.
 6. The prompt will be sent to Groq Cloud using the specified API key and model. The output or created issue will then be displayed within Burp Suite.
-
-![BountyPrompt1](/images/groqapikey.png)
 
 For more details on Groq Cloud, visit: [Groq Cloud](https://www.groq.com)
 
