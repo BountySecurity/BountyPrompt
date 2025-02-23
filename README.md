@@ -1,4 +1,4 @@
-Bounty Prompt Extension
+Bounty Prompt
 ======================
 [![GitHub release](https://img.shields.io/github/release/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/releases)
 [![GitHub last commit](https://img.shields.io/github/last-commit/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/commits/main)
@@ -9,22 +9,38 @@ Bounty Prompt Extension
 [![GitHub stars](https://img.shields.io/github/stars/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/stargazers)
 
 ----------------------
-**Bounty Prompt** is a Open Source **Burp Suite** extension developed by **Bounty Security** that leverages advanced AI technology integrated via **Burp AI**. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
+**Bounty Prompt** is an Open Source **Burp Suite** extension developed by **Bounty Security** that leverages advanced AI technology integrated via both **Burp AI** and **Groq Cloud**. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows.
 
 ![BountyPrompt1](/images/BountyPrompt1.png)
 
-## Installation and Usage Resume
+## Usage with Burp AI
 ----------------------
-<span style="color:red;">WARNING!: You need **Burp Suite Pro Early Adopter** compatible with Burp AI</span><br/>
-1. Install the extension
-2. Specify the `prompts` directory in the `Config` tab
-3. Enable `Use AI` in the extension:
+**WARNING!** You need a **Burp Suite Pro Early Adopter 2025.2 version** or newer compatible with Burp AI:<br/>
+
+1. Install the extension.
+2. Specify the `prompts` directory in the **Config** tab.
+3. Enable **Use AI** in the extension:
 
 ![BountyPrompt5](/images/BountyPrompt5.png)
 
-4. Use the extension with the default prompts or your own.
-   
-![BountyPrompt2](/images/BountyPrompt2.png)
+4. Select the desired HTTP requests/responses in Burp Suite.
+5. Right-click and choose the **Burp AI** menu option.
+6. The prompt will be sent to Burp AI, and the resulting output or issue will be displayed accordingly.
+
+## Usage with Groq Cloud
+-----------------------
+To use Groq Cloud:
+
+1. Ensure you have a valid Groq Cloud API key and select the desired AI model from the configuration.
+2. Configure your prompts in the extension UI.
+3. Select the desired HTTP requests/responses in Burp Suite.
+4. Right-click and choose the **Groq Cloud** menu option.
+5. If the Groq API key is not configured or is empty, a popup will prompt you to configure it in the Config tab.
+6. The prompt will be sent to Groq Cloud using the specified API key and model. The output or created issue will then be displayed within Burp Suite.
+
+![BountyPrompt1](/images/groqapikey.png)
+
+For more details on Groq Cloud, visit: [Groq Cloud](https://www.groq.com)
 
 ## Features
 ----------------------
@@ -35,32 +51,33 @@ Bounty Prompt Extension
 - **Flexible Configuration:** Customize prompts with fields for Title, Author, Output Type, Severity, and Confidence directly from an intuitive graphical interface.
 - **User-Friendly Interface:** Easily trigger prompt generation via a context menu, with a streamlined workflow for selecting and analyzing HTTP messages.
 - **Robust Error Handling:** Provides clear notifications and error messages during prompt generation and issue creation, ensuring a smooth user experience.
-- **Powered by Burp AI:** Utilizes the latest Burp AI technology to deliver accurate and effective security analysis.
-
+- **Dual AI Integration:** Now supports both **Burp AI** and **Groq Cloud AI**:
+  - **Burp AI:** Leverages the latest Burp AI technology integrated directly into Burp Suite.
+  - **Groq Cloud AI:** Utilizes advanced AI models hosted on Groq Cloud for scalable and powerful analysis.
+  
 For more information, please visit our website: [https://bountysecurity.ai](https://bountysecurity.ai)
-
 
 ## Load the Extension
 ----------------------
 
-1.  Navigate to **Extender > Extensions**.
-2.  Click **Add**.
-3.  Select **Extension Type: Java**.
-4.  Click **Select file...** and choose the compiled JAR file from the repository (or the directory containing your compiled classes).
-5.  Click **Next** and wait for the extension to load. You should see the extension named **Bounty Prompt Extension** in the list.
+1. Navigate to **Extender > Extensions**.
+2. Click **Add**.
+3. Select **Extension Type: Java**.
+4. Click **Select file...** and choose the compiled JAR file from the repository (or the directory containing your compiled classes).
+5. Click **Next** and wait for the extension to load. You should see the extension named **Bounty Prompt** in the list.
 
 ## Configuration
 -----------------
 
 The extension allows you to configure AI prompts. Each prompt consists of the following fields:
 
-*   **Title:** The title of the prompt.
-*   **Author:** Your identifier (e.g., `@bountysecurity`).
-*   **Output Type:** Choose between _Issue_ or _Prompt Output_.
-*   **Severity:** For issues – options include _Information_, _Low_, _Medium_, and _High_.
-*   **Confidence:** For issues – options include _Certain_, _Firm_, and _Tentative_.
-*   **System Prompt:** Instructions for the AI to define its role (e.g., "You are a web security expert specialized in SQL injection analysis...").
-*   **User Prompt:** The question or task for the AI. This field may include special tags (see Supported HTTP Tags).
+* **Title:** The title of the prompt.
+* **Author:** Your identifier (e.g., `@bountysecurity`).
+* **Output Type:** Choose between _Issue_ or _Prompt Output_.
+* **Severity:** For issues – options include _Information_, _Low_, _Medium_, and _High_.
+* **Confidence:** For issues – options include _Certain_, _Firm_, and _Tentative_.
+* **System Prompt:** Instructions for the AI to define its role (e.g., "You are a web security expert specialized in SQL injection analysis...").
+* **User Prompt:** The question or task for the AI. This field may include special tags (see Supported HTTP Tags).
 
 ## AI Prompts
 --------------
@@ -72,28 +89,15 @@ Configure your prompts in the extension UI. For issue-related prompts, set the O
 
 You can include the following tags in the User Prompt to automatically insert specific HTTP properties into your prompt:
 
-*   **\[HTTP\_Requests\]:** Includes the complete HTTP request text.
-*   **\[HTTP\_Requests\_Headers\]:** Includes only the HTTP request headers.
-*   **\[HTTP\_Requests\_Parameters\]:** Includes the query string parameters from the HTTP request URL.
-*   **\[HTTP\_Request\_Body\]:** Includes the HTTP request body (if available).
-*   **\[HTTP\_Responses\]:** Includes the complete HTTP response text.
-*   **\[HTTP\_Response\_Headers\]:** Includes only the HTTP response headers.
-*   **\[HTTP\_Response\_Body\]:** Includes the HTTP response body.
-*   **\[HTTP\_Status\_Code\]:** Includes the HTTP response status code (e.g., 200, 404).
-*   **\[HTTP\_Cookies\]:** Includes cookies extracted from the HTTP request or response.
-
-## Usage
----------
-
-1.  **Configure Prompts:** In the extension UI, add or edit prompts with the required fields.
-2.  **Select Requests/Responses:** In Burp Suite, select one or more HTTP requests/responses from the Site Map or via the context menu.
-3.  **Trigger a Prompt:**
-    *   Right-click to open the context menu and choose the **Prompts** menu.
-    *   Select a prompt to send the selected HTTP data to the AI.
-4.  **Issue Creation:** If the prompt’s Output Type is set to _Issue_, an issue will be created in Burp Suite against the static host `http://bountyprompt_extension.com`. For a single request, the issue will include the full endpoint; for multiple requests, only the domain (host) is used.
-5.  **Review Results:**
-    *   For _Prompt Output_ type, review the AI responses in the extension’s output area.
-    *   For _Issue_ type, review the created issues in the Burp Suite Issues tab.
+* **\[HTTP_Requests\]:** Includes the complete HTTP request text.
+* **\[HTTP_Requests_Headers\]:** Includes only the HTTP request headers.
+* **\[HTTP_Requests_Parameters\]:** Includes the query string parameters from the HTTP request URL.
+* **\[HTTP_Request_Body\]:** Includes the HTTP request body (if available).
+* **\[HTTP_Responses\]:** Includes the complete HTTP response text.
+* **\[HTTP_Response_Headers\]:** Includes only the HTTP response headers.
+* **\[HTTP_Response_Body\]:** Includes the HTTP response body.
+* **\[HTTP_Status_Code\]:** Includes the HTTP response status code (e.g., 200, 404).
+* **\[HTTP_Cookies\]:** Includes cookies extracted from the HTTP request or response.
 
 ## Example Prompts
 -------------------
@@ -102,17 +106,17 @@ Below are some sample prompts you can use or modify:
 
 ### SQL Injection & Other Attack Parameters Issue
 
-*   **Title:** SQL Injection & Other Attack Parameters Issue
-*   **Author:** @bountysecurity
-*   **Output Type:** Issue
-*   **Severity:** High
-*   **Confidence:** Firm
-*   **System Prompt:**
-    
+* **Title:** SQL Injection & Other Attack Parameters Issue  
+* **Author:** @bountysecurity  
+* **Output Type:** Issue  
+* **Severity:** High  
+* **Confidence:** Firm  
+* **System Prompt:**
+
         You are a web security expert specialized in vulnerability analysis. Analyze the provided HTTP requests and identify parameters that may be vulnerable to SQL injection, XSS, command injection, and other attacks. For each potential vulnerability, list the URL and the vulnerable parameter(s). If none are found, respond with "NONE".
-    
-*   **User Prompt:**
-    
+
+* **User Prompt:**
+
         Please analyze the following HTTP request parameters for potential vulnerabilities. Output only the URL and the vulnerable parameter names in the following format:
         
         These are the URLs and parameters potentially vulnerable:
@@ -120,71 +124,30 @@ Below are some sample prompts you can use or modify:
           - Parameter1
           - Parameter2
         [HTTP_Requests_Parameters]
-    
 
 ### Sensitive Information Disclosure Issue
 
-*   **Title:** Sensitive Information Disclosure Issue
-*   **Author:** @bountysecurity
-*   **Output Type:** Issue
-*   **Severity:** Medium
-*   **Confidence:** Tentative
-*   **System Prompt:**
-    
+* **Title:** Sensitive Information Disclosure Issue  
+* **Author:** @bountysecurity  
+* **Output Type:** Issue  
+* **Severity:** Medium  
+* **Confidence:** Tentative  
+* **System Prompt:**
+
         You are a web security expert focused on identifying sensitive information disclosures. Analyze the provided HTTP responses for accidental exposure of sensitive data such as internal IPs, version numbers, and configuration details. For each finding, output the URL and the line number where the sensitive information appears. If no sensitive information is found, respond with "NONE".
-    
-*   **User Prompt:**
-    
+
+* **User Prompt:**
+
         Analyze the following HTTP responses for any sensitive information.
         [HTTP_Responses]
-    
 
-### Malicious Input Reflection Analysis
-
-*   **Title:** Malicious Input Reflection Analysis
-*   **Author:** @bountysecurity
-*   **Output Type:** Issue
-*   **Severity:** High
-*   **Confidence:** Certain
-*   **System Prompt:**
-    
-        You are a web security expert specializing in reflection vulnerabilities. Examine the provided HTTP responses to determine if any user-supplied input is being directly reflected without proper sanitization. For each reflection, output the URL and the exact line number where it occurs. If no reflections are detected, respond with "NONE".
-    
-*   **User Prompt:**
-    
-        Examine the following HTTP responses for reflected user input vulnerabilities.
-        [HTTP_Responses]
-    
-
-### Information Disclosure in Headers
-
-*   **Title:** Information Disclosure in Headers
-*   **Author:** @bountysecurity
-*   **Output Type:** Issue
-*   **Severity:** Low
-*   **Confidence:** Tentative
-*   **System Prompt:**
-    
-        You are a web security expert tasked with detecting information disclosure in HTTP response headers. Analyze the provided headers for any unintended exposure of server details such as version numbers, internal IP addresses, or other configuration data. For each finding, output the URL and the header line that contains the sensitive information. If no such disclosure is found, respond with "NONE".
-    
-*   **User Prompt:**
-    
-        Analyze the following HTTP response headers for sensitive information.
-        [HTTP_Response_Headers]
-    
-
-### Additional Prompts
-
-*   **API Key Exposure Check:** Analyze HTTP responses to identify any exposed API keys, secrets, or tokens.
-*   **Endpoint Discovery:** Extract all unique endpoints from the provided HTTP responses, including any parameters if present.
-*   **Malicious Input Reflection Analysis (Detailed):** Detect if any user-supplied input is being reflected in HTTP responses without proper sanitization.
-*   **Information Disclosure in Headers (Detailed):** Identify any HTTP response headers that reveal sensitive information such as server versions, internal IPs, or configuration details.
+*(Additional prompt examples at the prompts directory)*
 
 ## Images
+----------------------
 
-![BountyPrompt3](/images/BountyPrompt3.png)
+![BountyPrompt3](/images/BountyPrompt3.png)  
 ![BountyPrompt4](/images/BountyPrompt4.png)
-
 
 ## Contributing
 -----------------
