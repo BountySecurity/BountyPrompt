@@ -50,7 +50,7 @@ public class IssueSender {
 
         // Create the AuditIssue using the static auditIssue(…) method.
         AuditIssue issue = auditIssue(
-                issueName,
+                "Bounty Prompt - " + issueName,
                 issueDetail,
                 null, // Remediation (can be null or empty)
                 baseUrl,

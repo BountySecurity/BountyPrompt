@@ -40,7 +40,13 @@ public class MainGui extends javax.swing.JPanel {
         this.filename = filename;
         initComponents();
         promptsDirectory.setText(this.filename);
-
+        this.groq_key.setText(BBAIData.getString("GROQ_APIKEY"));
+        Integer index = BBAIData.getInteger("GROQ_MODEL");
+        if (index != null) {
+            this.groq_model.setSelectedIndex(index);
+        } else {
+            this.groq_model.setSelectedIndex(0);
+        }
     }
 
     public List<PromptPanel.Prompt> getPrompts() {
@@ -193,6 +199,11 @@ public class MainGui extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         downloadPrompts = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        groq_model = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        groq_key = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         descriptionLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -298,7 +309,7 @@ public class MainGui extends javax.swing.JPanel {
         jtabpane1.addTab("   Prompt Output   ", jPanel21);
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel7.setText("OpenAI ChatGPT");
+        jLabel7.setText("OpenAI");
         jLabel7.setEnabled(false);
 
         openai_model.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GPT-4o", "o1", "o3-mini", "o3-mini-high" }));
@@ -365,6 +376,17 @@ public class MainGui extends javax.swing.JPanel {
 
         jLabel3.setText("* Download prompts from GitHub");
 
+        groq_model.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "distil-whisper-large-v3-en", "gemma2-9b-it", "llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama-guard-3-8b", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768", "whisper-large-v3", "whisper-large-v3-turbo", "qwen-2.5-coder-32b", "qwen-2.5-32b", "deepseek-r1-distill-qwen-32b", "deepseek-r1-distill-llama-70b-specdec", "deepseek-r1-distill-llama-70b", "llama-3.3-70b-specdec", "llama-3.2-1b-preview", "llama-3.2-3b-preview", "llama-3.2-11b-vision-preview", "llama-3.2-90b-vision-preview" }));
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel8.setText("Groq Cloud");
+
+        jLabel27.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel27.setText("Api Key");
+
+        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel19.setText("Model");
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
@@ -412,7 +434,17 @@ public class MainGui extends javax.swing.JPanel {
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addComponent(downloadPrompts)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3)))
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel27))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(groq_model, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(groq_key, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -437,9 +469,18 @@ public class MainGui extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(groq_model, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(groq_key, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(openai_model, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,7 +498,7 @@ public class MainGui extends javax.swing.JPanel {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
-                .addContainerGap(542, Short.MAX_VALUE))
+                .addContainerGap(455, Short.MAX_VALUE))
         );
 
         jPanel22Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {downloadPrompts, jButton1, jButton5});
@@ -465,7 +506,7 @@ public class MainGui extends javax.swing.JPanel {
         jtabpane1.addTab("   Config   ", jPanel22);
 
         descriptionLabel.putClientProperty("html.disable", null);
-        descriptionLabel.setText("<html> <p style=\"text-align: justify;\"> Bounty Prompt Extension is a Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows. </p><br/>For more details and to explore our solutions, please visit: <ul><li><a href=\\\\\\\"\\\\\\\">https://bountysecurity.ai</a></li></ul></p></html>");
+        descriptionLabel.setText("<html> <p style=\"text-align: justify;\"><b>Bounty Prompt</b> is an Open-Source Burp Suite extension developed by <b>Bounty Security</b> that leverages advanced AI technology through both <b>Burp AI</b> and <b>Groq Cloud</b>. It allows you to save pre-configured AI prompts and automatically attach selected HTTP requests and responses from Burp Suite. This combined data is sent to the AI engine, which analyzes your HTTP traffic and provides tailored security testing insights—helping to streamline vulnerability assessments and penetration testing workflows.<br/><br/><b>Bounty Prompt</b> not only delivers tailored security testing insights, but also actively responds to your specific queries. For instance, it can detect sensitive information within responses, scrutinize parameters to pinpoint potential vulnerabilities, and more. Moreover, the extension supports a comprehensive set of HTTP tags, allowing you to seamlessly incorporate key elements of HTTP traffic—such as headers, parameters, bodies, and cookies—directly into your prompts.<br/></p><br/>For more details and to explore our solutions, please visit: <ul><li><a href=\\\\\\\"\\\\\\\">https://bountysecurity.ai</a></li></ul></p></html>");
         descriptionLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         descriptionLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -492,8 +533,8 @@ public class MainGui extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(554, Short.MAX_VALUE))
+                .addComponent(descriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(515, Short.MAX_VALUE))
         );
 
         jtabpane1.addTab("   About   ", jPanel1);
@@ -656,13 +697,17 @@ public class MainGui extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JButton downloadPrompts;
     private javax.swing.JButton exportTo;
+    public javax.swing.JTextField groq_key;
+    public javax.swing.JComboBox<String> groq_model;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -670,6 +715,7 @@ public class MainGui extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel500;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel20;

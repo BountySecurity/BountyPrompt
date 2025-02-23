@@ -278,6 +278,19 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel27" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="groq_model" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="groq_key" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -306,9 +319,20 @@
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="groq_model" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="groq_key" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="openai_model" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -330,7 +354,7 @@
                           <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="542" max="32767" attributes="0"/>
+                      <EmptySpace pref="455" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -341,7 +365,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="16" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="OpenAI ChatGPT"/>
+                <Property name="text" type="java.lang.String" value="OpenAI"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -492,6 +516,67 @@
                 <Property name="text" type="java.lang.String" value="* Download prompts from GitHub"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JComboBox" name="groq_model">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="20">
+                    <StringItem index="0" value="distil-whisper-large-v3-en"/>
+                    <StringItem index="1" value="gemma2-9b-it"/>
+                    <StringItem index="2" value="llama-3.3-70b-versatile"/>
+                    <StringItem index="3" value="llama-3.1-8b-instant"/>
+                    <StringItem index="4" value="llama-guard-3-8b"/>
+                    <StringItem index="5" value="llama3-70b-8192"/>
+                    <StringItem index="6" value="llama3-8b-8192"/>
+                    <StringItem index="7" value="mixtral-8x7b-32768"/>
+                    <StringItem index="8" value="whisper-large-v3"/>
+                    <StringItem index="9" value="whisper-large-v3-turbo"/>
+                    <StringItem index="10" value="qwen-2.5-coder-32b"/>
+                    <StringItem index="11" value="qwen-2.5-32b"/>
+                    <StringItem index="12" value="deepseek-r1-distill-qwen-32b"/>
+                    <StringItem index="13" value="deepseek-r1-distill-llama-70b-specdec"/>
+                    <StringItem index="14" value="deepseek-r1-distill-llama-70b"/>
+                    <StringItem index="15" value="llama-3.3-70b-specdec"/>
+                    <StringItem index="16" value="llama-3.2-1b-preview"/>
+                    <StringItem index="17" value="llama-3.2-3b-preview"/>
+                    <StringItem index="18" value="llama-3.2-11b-vision-preview"/>
+                    <StringItem index="19" value="llama-3.2-90b-vision-preview"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Groq Cloud"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="groq_key">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel27">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Api Key"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Model"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -522,8 +607,8 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="descriptionLabel" min="-2" pref="185" max="-2" attributes="0"/>
-                      <EmptySpace pref="554" max="32767" attributes="0"/>
+                      <Component id="descriptionLabel" min="-2" pref="224" max="-2" attributes="0"/>
+                      <EmptySpace pref="515" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -531,7 +616,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="descriptionLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;p style=&quot;text-align: justify;&quot;&gt; Bounty Prompt Extension is a Burp Suite extension developed by Bounty Security that leverages advanced AI technology integrated via Burp AI. It enables users to generate intelligent security testing prompts by analyzing selected HTTP requests and responses from various sources within Burp Suite. The extension supports a wide range of HTTP tags, allowing you to automatically include specific parts of HTTP traffic (such as headers, parameters, bodies, and cookies) in your prompts, streamlining both automated and manual penetration testing workflows. &lt;/p&gt;&lt;br/&gt;For more details and to explore our solutions, please visit: &lt;ul&gt;&lt;li&gt;&lt;a href=\u005c\u005c\u005c&quot;\u005c\u005c\u005c&quot;&gt;https://bountysecurity.ai&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/html&gt;" containsInvalidXMLChars="true"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;p style=&quot;text-align: justify;&quot;&gt;&lt;b&gt;Bounty Prompt&lt;/b&gt; is an Open-Source Burp Suite extension developed by &lt;b&gt;Bounty Security&lt;/b&gt; that leverages advanced AI technology through both &lt;b&gt;Burp AI&lt;/b&gt; and &lt;b&gt;Groq Cloud&lt;/b&gt;. It allows you to save pre-configured AI prompts and automatically attach selected HTTP requests and responses from Burp Suite. This combined data is sent to the AI engine, which analyzes your HTTP traffic and provides tailored security testing insights&#x2014;helping to streamline vulnerability assessments and penetration testing workflows.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Bounty Prompt&lt;/b&gt; not only delivers tailored security testing insights, but also actively responds to your specific queries. For instance, it can detect sensitive information within responses, scrutinize parameters to pinpoint potential vulnerabilities, and more. Moreover, the extension supports a comprehensive set of HTTP tags, allowing you to seamlessly incorporate key elements of HTTP traffic&#x2014;such as headers, parameters, bodies, and cookies&#x2014;directly into your prompts.&lt;br/&gt;&lt;/p&gt;&lt;br/&gt;For more details and to explore our solutions, please visit: &lt;ul&gt;&lt;li&gt;&lt;a href=\u005c\u005c\u005c&quot;\u005c\u005c\u005c&quot;&gt;https://bountysecurity.ai&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/html&gt;" containsInvalidXMLChars="true"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
               </Properties>
               <Events>

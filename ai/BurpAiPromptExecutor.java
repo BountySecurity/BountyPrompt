@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-public class AiPromptExecutor {
+public class BurpAiPromptExecutor {
 
     private final Ai ai;
     private final Logging logging;
@@ -42,7 +42,7 @@ public class AiPromptExecutor {
      * area
      * @param executorService an ExecutorService to run AI tasks asynchronously
      */
-    public AiPromptExecutor(MontoyaApi api, Ai ai, Logging logging, MainGui mainGui, ExecutorService executorService) {
+    public BurpAiPromptExecutor(MontoyaApi api, Ai ai, Logging logging, MainGui mainGui, ExecutorService executorService) {
         this.ai = ai;
         this.logging = logging;
         this.mainGui = mainGui;

@@ -12,7 +12,10 @@ import burp.api.montoya.ui.contextmenu.ContextMenuEvent;
 import burp.api.montoya.ui.contextmenu.ContextMenuItemsProvider;
 import burp.api.montoya.ui.contextmenu.InvocationType;
 import burp.api.montoya.EnhancedCapability;
-import bountyprompt.ai.AiPromptExecutor;
+import bountyprompt.ai.BurpAiPromptExecutor;
+import bountyprompt.ai.GroqApiClientImpl;
+import bountyprompt.ai.GroqPromptExecutor;
+import bountyprompt.ai.IGroqApiClient;
 import bountyprompt.gui.MainGui;
 import bountyprompt.gui.PromptPanel;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -42,6 +45,7 @@ import java.util.concurrent.Executors;
 import static burp.api.montoya.EnhancedCapability.AI_FEATURES;
 import bountyprompt.gui.FilterURLs;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 
 public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, ContextMenuItemsProvider {
 
@@ -53,7 +57,7 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
     PersistedObject BBAIData;
     String filename;
 
-    private AiPromptExecutor aiExecutor;
+    private BurpAiPromptExecutor aiExecutor;
     private ExecutorService executorService;
 
     public static final String EXTENSION_NAME = "Bounty Prompt";
@@ -99,10 +103,10 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
             gui = new MainGui(BountyPrompt.this, BBAIData, filename);
             api.userInterface().registerSuiteTab(EXTENSION_NAME, gui);
             executorService = Executors.newFixedThreadPool(5);
-            aiExecutor = new AiPromptExecutor(api, api.ai(), logging, gui, executorService);
+            aiExecutor = new BurpAiPromptExecutor(api, api.ai(), logging, gui, executorService);
 
             // Print the welcome message
-            logging.logToOutput("Bounty Prompt v1.0.0");
+            logging.logToOutput("Bounty Prompt v1.1.0");
             logging.logToOutput("A solution from Bounty Security S.L (https://bountysecurity.ai)");
             logging.logToOutput("In case you find a bug, write us to hello@bountysecurity.ai");
             logging.logToOutput("");
@@ -116,37 +120,61 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
 
     @Override
     public List<Component> provideMenuItems(ContextMenuEvent event) {
-        JMenu promptsMenu = new JMenu("Prompts");
+        JMenu burpAIMenu = new JMenu("Burp AI");
+        JMenu groqMenu = new JMenu("Groq");
+
         if (gui != null) {
             List<PromptPanel.Prompt> prompts = gui.getPrompts();
+
             if (prompts.isEmpty()) {
-                // If there are no prompts, display the "Configure prompts directory" option
                 JMenuItem configureItem = new JMenuItem("Configure prompts directory");
                 configureItem.addActionListener(e -> {
                     gui.selectExtensionTab();
                     gui.selectConfigTab();
                 });
-                promptsMenu.add(configureItem);
+                burpAIMenu.add(configureItem);
+                groqMenu.add(configureItem);
             } else {
                 for (PromptPanel.Prompt prompt : prompts) {
-                    JMenuItem item = new JMenuItem(prompt.title);
-                    item.addActionListener(e -> {
-                        // Retrieve the selected HttpRequestResponse objects from the event.
+                    JMenuItem burpItem = new JMenuItem(prompt.title);
+                    burpItem.addActionListener(e -> {
                         HttpRequestResponse[] messages = getSelectedMessages(event);
                         List<HttpRequestResponse> requestResponses = Arrays.asList(messages);
-                        // Display the URL filter popup (using the FilterURLs panel) and get the filtered list.
                         List<HttpRequestResponse> remaining = FilterURLs.showURLFilterPopup(gui, requestResponses);
-                        // If the user pressed OK and there are filtered objects, proceed to generate the extra content.
                         if (remaining != null && !remaining.isEmpty()) {
                             String extraContent = getFilteredContentFromList(remaining, prompt.userPrompt);
                             aiExecutor.executePromptAsync(remaining, prompt, extraContent);
                         }
                     });
-                    promptsMenu.add(item);
+                    burpAIMenu.add(burpItem);
+
+                    JMenuItem groqItem = new JMenuItem(prompt.title);
+                    groqItem.addActionListener(e -> {
+                        HttpRequestResponse[] messages = getSelectedMessages(event);
+                        List<HttpRequestResponse> requestResponses = Arrays.asList(messages);
+                        List<HttpRequestResponse> remaining = FilterURLs.showURLFilterPopup(gui, requestResponses);
+                        if (remaining != null && !remaining.isEmpty()) {
+                            String apiKey = gui.groq_key.getText();
+                            if (apiKey == null || apiKey.trim().isEmpty()) {
+                                JOptionPane.showMessageDialog(gui,
+                                        "Configure the Groq API key in the Config section",
+                                        "Configuration Required",
+                                        JOptionPane.WARNING_MESSAGE);
+                                return;
+                            }
+                            String extraContent = getFilteredContentFromList(remaining, prompt.userPrompt);
+                            IGroqApiClient groqApiClient = new GroqApiClientImpl(apiKey);
+                            GroqPromptExecutor groqExecutor = new GroqPromptExecutor(groqApiClient,
+                                    (String) gui.groq_model.getSelectedItem(),
+                                    logging, gui, executorService, api);
+                            groqExecutor.executePromptAsync(remaining, prompt, extraContent);
+                        }
+                    });
+                    groqMenu.add(groqItem);
                 }
             }
         }
-        return new ArrayList<>(Arrays.asList(promptsMenu));
+        return new ArrayList<>(Arrays.asList(groqMenu, burpAIMenu));
     }
 
     private String sanitizeURL(String url) {
@@ -256,10 +284,8 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
                         .append(getRequestHeaders(message)).append("\n");
             }
             if (userPrompt.contains("[HTTP_Requests_Parameters]")) {
-                // Se añade primero la URL completa
                 sb.append("Request URL:\n")
                         .append(message.request().url()).append("\n");
-                // A continuación se añaden los parámetros extraídos
                 sb.append("Request Parameters:\n")
                         .append(getRequestParameters(message)).append("\n");
             }
@@ -529,6 +555,8 @@ public class BountyPrompt implements BurpExtension, ExtensionUnloadingHandler, C
             }
         }
         BBAIData.setString("FILENAME", gui.promptsDirectory.getText());
+        BBAIData.setString("GROQ_APIKEY", gui.groq_key.getText().replace(" ", ""));
+        BBAIData.setInteger("GROQ_MODEL", gui.groq_model.getSelectedIndex());
 
         this.logging.logToOutput("Extension unloaded!");
     }

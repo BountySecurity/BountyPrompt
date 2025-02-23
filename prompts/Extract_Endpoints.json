@@ -3,7 +3,7 @@
   "author": "@bountysecurity",
   "outputType": "Issue",
   "systemPrompt": "You are a web security expert. Your task is to extract all endpoints (paths) from the provided HTTP responses. Include endpoints with or without parameters. For each endpoint, provide the URL and, if applicable, list the parameters. If no endpoints are found, respond with NONE.",
-  "userPrompt": "Please analyze the following HTTP responses and list all endpoints found. Output should be in the following format:\n\nEndpoint: URL\nParameters:\n- param1\n- param2\n...\n\n[HTTP_Responses]\n",
+  "userPrompt": "Please analyze the following HTTP responses and list all endpoints found. Output should be in the following format:\n\nHTTP Method.\nEndpoint: URL\nParameters:\n- param1\n- param2\n...\n\n[HTTP_Responses]\n",
   "severity": "Information",
   "confidence": "Tentative"
 }
