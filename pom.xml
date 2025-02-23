@@ -5,7 +5,7 @@
     <!--Package details-->
     <groupId>net.bountysecurity</groupId>
     <artifactId>bountyprompt</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <!--Build configuration-->
     <build>
         <plugins>
