@@ -1,12 +1,12 @@
 Bounty Prompt
 ======================
-[![GitHub release](https://img.shields.io/github/release/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/releases)
-[![GitHub last commit](https://img.shields.io/github/last-commit/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/commits/main)
-[![GitHub issues](https://img.shields.io/github/issues/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/issues)
-[![Downloads](https://img.shields.io/github/downloads/bountysecurity/export-to-gbounty/total.svg)](https://github.com/bountysecurity/BountyPrompt/releases)
-[![Contributors](https://img.shields.io/github/contributors/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/graphs/contributors)
-[![GitHub forks](https://img.shields.io/github/forks/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/network)
-[![GitHub stars](https://img.shields.io/github/stars/bountysecurity/export-to-gbounty.svg)](https://github.com/bountysecurity/BountyPrompt/stargazers)
+[![GitHub release](https://img.shields.io/github/release/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/issues)
+[![Downloads](https://img.shields.io/github/downloads/bountysecurity/BountyPrompt/total.svg)](https://github.com/bountysecurity/BountyPrompt/releases)
+[![Contributors](https://img.shields.io/github/contributors/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/graphs/contributors)
+[![GitHub forks](https://img.shields.io/github/forks/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/network)
+[![GitHub stars](https://img.shields.io/github/stars/bountysecurity/BountyPrompt.svg)](https://github.com/bountysecurity/BountyPrompt/stargazers)
 
 ----------------------
 **Bounty Prompt** is an open-source **Burp Suite** extension developed by **Bounty Security** that leverages advanced AI technology through both **Burp AI** and **Groq Cloud**. It allows you to save pre-configured AI prompts and automatically attach selected HTTP requests and responses from Burp Suite. This combined data is sent to the AI engine, which analyzes your HTTP traffic and provides tailored security testing insights—helping to streamline vulnerability assessments and penetration testing workflows.
